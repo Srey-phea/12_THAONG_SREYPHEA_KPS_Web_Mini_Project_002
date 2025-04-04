@@ -2,13 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { fetchTasksService } from "@/app/service/card.service";
+import Link from "next/link";
+
 
 const WorkspaceComponent = ({ workspaceList }) => {
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedWorkspace, setSelectedWorkspace] = useState(null); // Track selected workspace
-  const [tasks, setTasks] = useState([]); // Store fetched tasks
+  // const [selectedWorkspace, setSelectedWorkspace] = useState(null); // Track selected workspace
+  // const [tasks, setTasks] = useState([]); // Store fetched tasks
+  const {payload} = workspaceList;
+  const fav = payload.filter((item) => item.isFavorite);
+  console.log("Favorites:", fav);
+  
 
   // Generate random colors for workspaces
   const getRandomColor = () => {
@@ -63,7 +69,7 @@ const WorkspaceComponent = ({ workspaceList }) => {
       {/* Header */}
       <div className="flex justify-between">
         <h2 className="text-[#94A3B8] font-bold text-3xl mb-5">Workspace</h2>
-        <img src="add-square.svg" alt="Add Workspace" />
+        <img src="/add-square.svg" alt="Add Workspace" />
       </div>
 
       {/* Workspace List */}
@@ -71,7 +77,7 @@ const WorkspaceComponent = ({ workspaceList }) => {
         <div>No workspaces found</div>
       ) : (
         workspaces.map((workspace) => (
-          <div
+          <Link href={`/todo/${workspace.workspaceId}`}
             key={workspace.workspaceId}
             className={`flex justify-between cursor-pointer p-3 rounded-lg hover:bg-gray-200 transition`}
             onClick={() => handleWorkspaceClick(workspace)} // Updated function call
@@ -86,18 +92,11 @@ const WorkspaceComponent = ({ workspaceList }) => {
               </div>
               <h3 className="text-xl mt-2">{workspace.workspaceName || "Unnamed Workspace"}</h3>
             </div>
-            <img src="more.svg" alt="More" className="mt-4" />
-          </div>
+            <img src="/more.svg" alt="More" className="mt-4" />
+          </Link>
         ))
       )}
 
-      {/* Show Tasks for Selected Workspace */}
-      {/* {selectedWorkspace && (
-        <div className="mt-10">
-          <h3 className="text-2xl font-bold">Tasks for {selectedWorkspace.workspaceName}</h3>
-          <CardComponent cards={{ payload: tasks }} />
-        </div>
-      )} */}
     </div>
   );
 };

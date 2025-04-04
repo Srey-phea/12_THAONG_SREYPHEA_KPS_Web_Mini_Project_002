@@ -26,7 +26,7 @@ export default function LoginComponent() {
 
 		// After login success we may want to go somewhere
     if(res?.status == 200) {
-      router.push('/todo');
+      router.push('/todo/8615a747-ffae-4045-942b-b8764f1a6eb2');
     }
     reset();
   }

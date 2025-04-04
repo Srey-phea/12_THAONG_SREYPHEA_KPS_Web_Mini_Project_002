@@ -13,7 +13,7 @@ const LogoutComponent = () => {
   return (
     <div className="flex gap-5 px-15 mt-30">
       <img
-        src="logout.svg"
+        src="/logout.svg"
         alt="Logout"
         onClick={handleLogout}
         className="cursor-pointer"

@@ -10,11 +10,11 @@ const SideBarComponent = async () => {
   // const favData = await getFavoriteWorkspaces();
   return (
     <div className="bg-[#F8FAFC] h-[945px] py-25 ">
-      <div className="px-45">
+      <div className="px-25">
         <Logo />
       </div>
       <WorkspaceComponent workspaceList = {data}  />
-      <FavoriteComponent/>
+      <FavoriteComponent />
       <LogoutComponent/>
     </div>
   );

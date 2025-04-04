@@ -1,5 +1,5 @@
-'use client'
 
+'use client'
 import { useEffect, useState } from "react";
 import { getFavoriteWorkspaces } from "@/app/service/workspace.service";
 
@@ -13,41 +13,41 @@ const FavoriteComponent = () => {
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        setLoading(true);
-        const favData = await getFavoriteWorkspaces();
+  // useEffect(() => {
+  //   const fetchFavorites = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const favData = await getFavoriteWorkspaces();
+  //       // if (!favData?.payload) {
+  //       //   throw new Error("Invalid response structure");
+  //       // }
 
-        // if (!favData?.payload) {
-        //   throw new Error("Invalid response structure");
-        // }
+  //       setFavoriteWorkspaces(
+  //         favData.map(workspace => ({
+  //           ...workspace,
+  //           color: getRandomColor(),
+  //         }))
+  //       );
+  //     } catch (err) {
+  //       setError("Failed to fetch favorite workspaces");
+  //       console.error(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchFavorites();
+  // }, []);
 
-        setFavoriteWorkspaces(
-          favData.payload.map(workspace => ({
-            ...workspace,
-            color: getRandomColor(),
-          }))
-        );
-      } catch (err) {
-        setError("Failed to fetch favorite workspaces");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFavorites();
-  }, []);
-
-  if (loading) return <div className="px-15 mt-20">Loading favorites...</div>;
-  if (error) return <div className="px-15 mt-20 text-red-500">{error}</div>;
+  
+  // if (loading) return <div className="px-15 mt-20">Loading favorites...</div>;
+  // if (error) return <div className="px-15 mt-20 text-red-500">{error}</div>;
 
   return (
     <div className="px-15 mt-20">
       
       <div className="flex justify-between">
         <h2 className="text-[#94A3B8] font-bold text-3xl">Favorite</h2>
-        <img src="star.svg" alt="star" className="mt-4" />
+        <img src="/star.svg" alt="star" className="mt-4" />
       </div>
 
       {favoriteWorkspaces.length > 0 ? (

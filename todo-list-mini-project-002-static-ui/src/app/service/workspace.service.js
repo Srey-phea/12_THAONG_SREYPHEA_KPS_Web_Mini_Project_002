@@ -1,3 +1,4 @@
+
 import headerToken from "../api/headerToken";
 import { baseUrl } from "./constants";
 
@@ -22,20 +23,31 @@ export const fetchWorkspacesService = async () => {
 };
 
 
-export const getFavoriteWorkspaces = async () => {
-  try {
-    const res = await fetch(`${baseUrl}/workspace/${workspaceId}/favorite?favorite=true`);
-    // if (!response.ok) {
-    //   throw new Error(`Error: ${response.status} ${response.statusText}`);
-    // }
-    const data = await res.json();
-    // console.log('jhfbefijb', data)
-    return data;
-  } catch (error) {
-    console.error("Error fetching favorite workspaces:", error);
-    return [];
-  }
-};
 
+
+
+export const updateFavById = async (workspaceId, isFav) => {
+  try{
+    // http://96.9.81.187:8080/api/v1/workspace/3fe96c54-92d2-4c5f-b9be-dcbec05ab09c/favorite?favorite=true
+
+    const res = await fetch(`${baseUrl}/workspace/${workspaceId}/favorite?favorite=${isFav}`,
+      {
+        method: "PATCH",
+        headers: await headerToken(),
+        body: JSON.stringify({
+          workspaceId, 
+          isFavorite: isFav,
+        })
+      }
+    )
+    console.log('first', res)
+    const data = await res.json();
+    return data;
+  } 
+  
+  catch (error) {
+        console.error("Error fetching favorite workspaces:", error);
+      }
+}
 
 

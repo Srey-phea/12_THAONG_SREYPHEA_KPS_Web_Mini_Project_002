@@ -47,8 +47,9 @@ const UserProfileComponent = ({userInfo}) => {
   }
 
   return (
-    <div className='flex gap-5 px-10'>
-      <img src="notification-bing.svg" alt="notification" />
+    <div className='flex gap-5 '>
+      <img src="/notification-bing.svg" alt="notification" />
+      
       <img 
         src={userData.profile}
         alt="profile" 

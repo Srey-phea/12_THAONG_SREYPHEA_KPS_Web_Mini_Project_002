@@ -9,9 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
-        <TodoPage>
-        {children}
-        </TodoPage>
+        <div>{children}</div>
         </body>
      </html>
   )

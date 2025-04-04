@@ -1,11 +1,11 @@
 const CardComponent = ({ cards }) => {
   // Group tasks by status
-  const notStarted = cards.payload?.filter(task => task.status === "NOT_STARTED") || [];
-  const inProgress = cards.payload?.filter(task => task.status === "IN_PROGRESS") || [];
-  const finished = cards.payload?.filter(task => task.status === "FINISHED") || [];
+  const notStarted = cards?.filter(task => task.status === "NOT_STARTED") || [];
+  const inProgress = cards?.filter(task => task.status === "IN_PROGRESS") || [];
+  const finished = cards?.filter(task => task.status === "FINISHED") || [];
 
   return (
-    <div className="px-10 mt-8">
+    <div className="pl-20 mt-8">
       <div className="flex gap-10">
         <TaskColumn title="Not Started" status="NOT_STARTED" tasks={notStarted} />
         <TaskColumn title="In Progress" status="IN_PROGRESS" tasks={inProgress} />
@@ -52,7 +52,7 @@ const TaskColumn = ({ title, status, tasks }) => {
             <div className="p-5 h-auto  ">
               <div className="flex justify-between">
                 <p className="text-[#1E293B] text-[20px] font-bold">{task.taskTitle}</p>
-                <img src="more.svg" alt="More options" />
+                <img src="/more.svg" alt="More options" />
               </div>
               <p className="text-[#94A3B8] text-[16px] my-2">{task.taskDetails}</p>
               <div className="flex justify-between items-center">
@@ -98,7 +98,7 @@ const TaskColumn = ({ title, status, tasks }) => {
               </div>
 
               <div className="flex">
-                <img src="clock.svg" alt="Clock icon" />
+                <img src="/clock.svg" alt="Clock icon" />
                 <p className="ml-3 text-[#94A3B8] text-[16px] font-bold ">
                   {new Date(task.endDate).toLocaleDateString()}
                 </p>
